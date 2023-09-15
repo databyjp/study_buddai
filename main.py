@@ -163,35 +163,35 @@ def main():
         import requests
         import json
 
-        BASE_URL = "http://localhost:8000"
-        payload = {
-            "source_path": "PAPER_URL",
-            "text": source_text
-        }
-        response = requests.post(f"{BASE_URL}/study/", json=payload)
-        resp_text = json.loads(response.text)
+        # BASE_URL = "http://localhost:8000"
+        # payload = {
+        #     "source_path": "PAPER_URL",
+        #     "text": source_text
+        # }
+        # response = requests.post(f"{BASE_URL}/study/", json=payload)
+        # resp_text = json.loads(response.text)
 
         with col1:
             st.header("Revision material")
-            # plaintext_summary = get_plaintext_summary(source_text, use_gpt_4)
-            plaintext_summary = resp_text['revision_quiz_answers']['properties']['body']
+            plaintext_summary = get_plaintext_summary(source_text, use_gpt_4)
+            # plaintext_summary = resp_text['revision_quiz_answers']['properties']['body']
             with st.expander("Plaintext summary", expanded=True):
                 st.write(plaintext_summary)
             with st.expander("Revision quiz"):
-                # quiz_text = get_revision_quiz(source_text, use_gpt_4)
-                quiz_text = resp_text['revision_quiz']['properties']['body']
+                quiz_text = get_revision_quiz(source_text, use_gpt_4)
+                # quiz_text = resp_text['revision_quiz']['properties']['body']
                 st.markdown(quiz_text)
 
         with col2:
             st.header("Study aids")
             with st.expander("Glossary", expanded=True):
-                # glossary = get_glossary(source_text, use_gpt_4)
-                glossary = resp_text['glossary']['properties']['body']
+                glossary = get_glossary(source_text, use_gpt_4)
+                # glossary = resp_text['glossary']['properties']['body']
                 st.write(glossary)
             with st.expander("See answers"):
-                # answers = get_quiz_answers(quiz_text, source_text, use_gpt_4)
-                revision_quiz_answers = resp_text['revision_quiz_answers']['properties']['body']
-                st.write(revision_quiz_answers)
+                answers = get_quiz_answers(quiz_text, source_text, use_gpt_4)
+                # answers = resp_text['revision_quiz_answers']['properties']['body']
+                st.write(answers)
             with st.expander("Source text"):
                 st.write(source_text)
 
