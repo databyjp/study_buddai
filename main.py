@@ -1,7 +1,10 @@
 import streamlit as st
 import json
 from ragwrangler import RAGTask
-from helpers import plaintext_summary_builder, get_glossary_builder, revision_quiz_json_builder, quiz_set_json_to_markdown
+from helpers import (
+    plaintext_summary_builder, get_glossary_builder, revision_quiz_json_builder,
+    quiz_set_json_to_markdown
+)
 
 
 def main():
@@ -38,6 +41,5 @@ def main():
                 st.write(answers_md_return)
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     main()
