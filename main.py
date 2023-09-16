@@ -11,8 +11,8 @@ from helpers import (
 
 def main():
     st.set_page_config(layout="wide")
-    st.title('StudyBuddAI')
-    st.text("Note that much of this is LLM-generated and may contain errors.")
+    st.title('StudyBuddAI - powered by Weaviate')
+    st.text("Note that this is LLM-generated and may contain errors.")
 
     with st.expander("Set your API key here:"):
         api_key = st.text_input("API key:")
@@ -32,8 +32,8 @@ def main():
         col1, col2 = st.columns([2, 2])
 
         client = weaviate.Client(
-            url=os.environ['WCS_URL'],
-            auth_client_secret=weaviate.AuthApiKey(os.environ['WCS_ADMIN_KEY']),
+            url=st.secrets.weaviate_credentials.wcs_url,
+            auth_client_secret=weaviate.AuthApiKey(st.secrets.weaviate_credentials.wcs_key),
             additional_headers={"X-OpenAI-Api-Key": api_key}
         )
 
